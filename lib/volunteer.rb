@@ -29,4 +29,12 @@ class Volunteer
     @id = result.first().fetch('id').to_i
   end
 
+  def self.find(find_id)
+    result = DB.exec("SELECT * FROM volunteers WHERE id = #{find_id}").first
+    id = result.fetch('id').to_i
+    name = result.fetch('name')
+    project_id = result.fetch('project_id').to_i
+    Volunteer.new({id: id, name: name, project_id: project_id})
+  end
+
 end
