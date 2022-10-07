@@ -34,4 +34,15 @@ class Project
     Project.new({id: id, title: title})
   end
 
+  def update(update_hash)
+    if update_hash.has_key?(:title)
+      updated = DB.exec("UPDATE projects SET title = '#{title}' WHERE id = #{@id}")
+      @title = update_hash.fetch(:title)
+    else
+      nil
+    end
+  end
+
+    # DB.exec("DELETE FROM projecs WHERE id = #{@id}")
+
 end
