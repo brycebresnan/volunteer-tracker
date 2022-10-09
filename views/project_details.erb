@@ -1,0 +1,15 @@
+<h1>Project: <%= @project.title %></h1>
+
+<h3>Volunteers:</h3>
+
+<% if @volunteers.any? %>
+  <ul>
+    <% @volunteers.each do |vol| %>
+      <li><a href="/volunteers/<%= vol.id %>"><%= vol.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> You have no volunteers on this project.</p>
+<% end %>
+
+<p><a href="/projects/<%= @project.id %>/edit">Edit Project</a></p>
