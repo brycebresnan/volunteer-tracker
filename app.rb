@@ -47,3 +47,14 @@ delete('/projects/:id') do
   project.delete
   redirect to('/')
 end
+
+get('/volunteers') do
+  @volunteers = Volunteer.all
+  erb(:volunteers)
+end
+
+post('/volunteers') do
+  volunteer = Volunteer.new({id: nil, name: params['vol_name'],project_id: 0})
+  volunteer.save()
+  redirect to('/volunteers')
+end
