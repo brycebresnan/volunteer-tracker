@@ -15,16 +15,6 @@
 <h3>Volunteers Available:</h3>
 
 <% if @vol_all.any? %>
-  <ul>
-    <% @vol_all.each do |vol| %>
-      <li><a href="/volunteers/<%= vol.id %>"><%= vol.name %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p> You have no Volunteers Available.</p>
-<% end %>
-
-<% if @vol_all.any? %>
   <form action="/projects/<%= @project.id %>" method="post">
     <input name="_method" type="hidden" value="patch">
     
