@@ -35,9 +35,9 @@ class Project
   end
 
   def update(update_hash)
-    if update_hash.has_key?(:title)
-      updated = DB.exec("UPDATE projects SET title = '#{title}' WHERE id = #{@id}")
+    if update_hash.has_key?(:title) && (update_hash.fetch(:title) != nil)
       @title = update_hash.fetch(:title)
+      updated = DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id}")
     else
       nil
     end
