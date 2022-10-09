@@ -1,6 +1,6 @@
 <h1>Project: <%= @project.title %></h1>
 
-<h3>Volunteers:</h3>
+<h3>Volunteers Assigned:</h3>
 
 <% if @volunteers.any? %>
   <ul>
@@ -12,4 +12,36 @@
   <p> You have no volunteers on this project.</p>
 <% end %>
 
+<h3>Volunteers Available:</h3>
+
+<% if @vol_all.any? %>
+  <ul>
+    <% @vol_all.each do |vol| %>
+      <li><a href="/volunteers/<%= vol.id %>"><%= vol.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> You have no Volunteers Available.</p>
+<% end %>
+
+<% if @vol_all.any? %>
+  <form action="/projects/<%= @project.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    
+    <div class="form-group">
+      <label for="volunteer_assign">Assign a volunteer:</label>
+      <select name="volunteers" id="volunteer_assign">
+        <option value="">--Please choose a volunteer--</option>
+        <% @vol_all.each do |vol| %>
+          <option value="<%= vol.id %>"><%= vol.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Assign Volunteer</button>
+  </form>
+<% else %>
+  <p> You have no Volunteers Available.</p>
+<% end %>
+
 <p><a href="/projects/<%= @project.id %>/edit">Edit Project</a></p>
+<p><a href="/volunteers">Go to Volunteers Page</a></p>
