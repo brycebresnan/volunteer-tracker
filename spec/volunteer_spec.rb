@@ -70,8 +70,9 @@ describe Volunteer do
       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 0, :id => nil})
       volunteer1.save
       project = Project.new({id: nil, title: 'Teaching Kids to Program'})
+      project.save
       volunteer1.assign_project(project.id)
-      expect(volunteer1.id).to eq [project.id]
+      expect(volunteer1.project_id).to eq project.id
     end
   end
 
