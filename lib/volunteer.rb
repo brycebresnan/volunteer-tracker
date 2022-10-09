@@ -37,4 +37,16 @@ class Volunteer
     Volunteer.new({id: id, name: name, project_id: project_id})
   end
 
+  def self.all_available
+    results = DB.exec("SELECT * FROM volunteers WHERE project_id = 0")
+    volunteers = []
+    results.each do |vol|
+      id = vol.fetch('id').to_i
+      name = vol.fetch('name')
+      project_id = vol.fetch('project_id').to_i
+      volunteers.push(Volunteer.new({id: id, name: name, project_id: project_id}))
+    end
+    volunteers
+  end
+
 end
