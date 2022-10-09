@@ -65,5 +65,14 @@ describe Volunteer do
     end
   end
 
-end
+  describe '#assign_project' do
+    it 'assigns a project to a volunteer' do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 0, :id => nil})
+      volunteer1.save
+      project = Project.new({id: nil, title: 'Teaching Kids to Program'})
+      volunteer1.assign_project(project.id)
+      expect(volunteer1.id).to eq [project.id]
+    end
+  end
 
+end
