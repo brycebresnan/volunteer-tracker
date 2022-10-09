@@ -18,8 +18,8 @@
 * Navigate to the root in command line
 * Run the following command replacing <code>[DATABASE NAME]/[TEST DATABASE NAME]</code> with your desired database titles.
 
-<code>createdb [DATABASE NAME]</code>
-<code>psql [DATABASE_NAME] < database_backup.sql</code>
+<code>createdb [DATABASE NAME]</code>\
+<code>psql [DATABASE_NAME] < database_backup.sql</code>\
 <code>createdb -T [DATABASE NAME] [TEST DATABASE NAME]</code>
 
 * Run <code>$bundle install</code> to install the required gems.
