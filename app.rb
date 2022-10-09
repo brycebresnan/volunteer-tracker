@@ -66,6 +66,7 @@ get('/volunteers/:id') do
   else
     @project = Project.new({title: "No Project Assigned", id: 0})
   end
+  @projects = Project.all
   erb(:volunteer_details)
 end
   
