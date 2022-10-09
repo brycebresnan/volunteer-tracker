@@ -58,3 +58,14 @@ post('/volunteers') do
   volunteer.save()
   redirect to('/volunteers')
 end
+
+get('/volunteers/:id') do
+  @volunteer = Volunteer.find(params[:id])
+  if @volunteer.project_id != 0
+    @project = Project.find(@volunteer.project_id.to_i)
+  else
+    @project = Project.new({title: "No Project Assigned", id: 0})
+  end
+  erb(:volunteer_details)
+end
+  
