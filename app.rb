@@ -26,9 +26,14 @@ post('/projects') do
 end
 
 patch('/projects/:id') do
-  project = Project.find(params[:id].to_i)
-  project.update({title: params[:project_title], id: nil})
-  redirect to('/')
+  if params.has_key?(:project_title)
+    project = Project.find(params[:id].to_i)
+    project.update({title: params[:project_title], id: nil})
+  elsif params.has_key?(:volunteers)
+    volunteer = Volunteer.find(params[:volunteers].to_i)
+    volunteer.assign_project(params[:id].to_i)
+  end
+  redirect to("/projects/#{params[:id].to_i}")
 end
 
 get('/projects/:id') do
