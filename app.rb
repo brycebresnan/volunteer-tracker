@@ -75,4 +75,10 @@ get('/volunteers/:id') do
   @projects = Project.all
   erb(:volunteer_details)
 end
+
+patch('/volunteers/:id') do
+  volunteer = Volunteer.find(params[:id].to_i)
+  volunteer.assign_project(params[:proj_assign].to_i)
+  redirect to("/volunteers/#{params[:id].to_i}")
+end
   
