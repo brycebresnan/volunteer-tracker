@@ -54,4 +54,16 @@ describe Volunteer do
       expect(Volunteer.find(volunteer1.id)).to eq volunteer1
     end
   end
+
+  describe '.all_available' do
+    it 'returns a list of volunteers that are assigned to no project (project id = 0)' do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 0, :id => nil})
+      volunteer2.save
+      expect(Volunteer.all_available).to eq [volunteer2]
+    end
+  end
+
 end
+
