@@ -34,6 +34,7 @@ end
 get('/projects/:id') do
   @project = Project.find(params[:id].to_i)
   @volunteers = @project.volunteers
+  @vol_all = Volunteer.all_available
   erb(:project_details)
 end
 
