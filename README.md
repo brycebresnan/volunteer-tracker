@@ -13,9 +13,15 @@
 
 
 ## Setup/Installation Requirements
-
+* Start a Postgress server
 * Clone this repository from GitHub.
 * Navigate to the root in command line
+* Run the following command replacing <code>[DATABASE NAME]/[TEST DATABASE NAME]</code> with your desired database titles.
+
+<code>createdb [DATABASE NAME]
+psql [DATABASE_NAME] < database_backup.sql
+createdb -T [DATABASE NAME] [TEST DATABASE NAME]</code>
+
 * Run <code>$bundle install</code> to install the required gems.
 * Run <code>$ruby app.rb</code> to start the server.
 * Navigate in your browser to http://localhost:4567/
